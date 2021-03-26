@@ -2,9 +2,12 @@ package com.kc.androidlib;
 
 import android.app.Application;
 
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.kc.uiwatch.UiWatcher;
 
-public class MainApplication extends Application {
+public class MainApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
