@@ -1,8 +1,10 @@
 package com.kc.androidlib
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.kc.androidlib.activity.KProgressActivity
 import com.kc.androidlib.toast.Toasty
 
 class MainActivity : AppCompatActivity() {
@@ -13,5 +15,9 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.toast_utils).setOnClickListener {
             Toasty.info(MainActivity@this, "1111").show()
         }
+
+        findViewById<View>(R.id.water_anim).setOnClickListener (View.OnClickListener {
+            startActivity(Intent(MainActivity@this, KProgressActivity::class.java))
+        })
     }
 }
