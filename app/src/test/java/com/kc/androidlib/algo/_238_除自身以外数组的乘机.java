@@ -2,16 +2,13 @@ package com.kc.androidlib.algo;
 
 import org.junit.Test;
 
-public class _292_nim游戏 {
+public class _238_除自身以外数组的乘机 {
 
     @Test
     public void method1() {
 
     }
 
-    public boolean canWinNim(int n) {
-        return n%4 !=0;
-    }
 
 
 
