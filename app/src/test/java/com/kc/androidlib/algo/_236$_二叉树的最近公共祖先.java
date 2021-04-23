@@ -4,8 +4,12 @@ import android.util.Log;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 public class _236$_二叉树的最近公共祖先 {
 
@@ -43,8 +47,15 @@ public class _236$_二叉树的最近公共祖先 {
 //        lowerstCommonAncestor(treeNode, treeNode.left.right.left,  treeNode.right );
 //        System.out.println(  ans.value );
 
-        lowerstCommonAncestor(treeNode, treeNode.left.right.left,  treeNode.left.right.right );
-        System.out.println(  ans.value );
+//        lowerstCommonAncestor(treeNode, treeNode.left.right.left,  treeNode.left.right.right );
+//        System.out.println(  ans.value );
+
+
+        TreeNode treeNode1 = lowerstCommonAncestor2(treeNode, treeNode.left.right.left, treeNode.right);
+        System.out.println(  treeNode1.value );
+
+        TreeNode treeNode2 = lowerstCommonAncestor2(treeNode, treeNode.left.right.left, treeNode.left.right.right);
+        System.out.println(  treeNode2.value );
     }
 
     /**
@@ -72,4 +83,42 @@ public class _236$_二叉树的最近公共祖先 {
     }
 
 
+    /**
+     * 存储节点
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+
+    static Map<Integer, TreeNode> parent = new HashMap<>();
+    static Set<Integer> visited = new HashSet<>();
+    public static TreeNode lowerstCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        saveTree(root);
+
+        while (p != null) {
+            visited.add(p.value);
+            p = parent.get(p.value);
+        }
+
+        while (q != null) {
+            if (visited.contains(q.value)) {
+                return q;
+            }
+            q = parent.get(q.value);
+        }
+        return null;
+
+    }
+
+    public static void saveTree(TreeNode root) {
+        if (root.left != null) {
+            parent.put(root.left.value, root);
+            saveTree(root.left);
+        }
+        if (root.right != null) {
+            parent.put(root.right.value, root);
+            saveTree(root.right);
+        }
+    }
 }
