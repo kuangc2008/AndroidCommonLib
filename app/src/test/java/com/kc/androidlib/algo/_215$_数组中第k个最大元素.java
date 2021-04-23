@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-public class _215_数组中第k个最大元素 {
+public class _215$_数组中第k个最大元素 {
 
 
     @Test
@@ -26,6 +26,9 @@ public class _215_数组中第k个最大元素 {
      * 合并：  子数组都是排序的，不需要合并
      *
      * 所以只要找到了倒数第k个小标的  q时，就找到了答案，  子序列是否排序，不关心
+     *
+     * O(N)
+     * O（longN)
      */
     private int findKthLargest(int[] nums, int k) {
         return quickSelect(nums, 0, nums.length -1 , nums.length - k );
@@ -69,4 +72,55 @@ public class _215_数组中第k个最大元素 {
 
     }
 
+
+    /**
+     * 基于最大堆实现：  构建堆、删除元素再上浮
+     * @param nums
+     * @param k
+     * @return
+     *
+     * O(n*logn)  建立： O(n)  删除 O(k*logn)
+     * O(logn)
+     */
+    private int findKthLargest2(int[] nums, int k) {
+        int heapSize = nums.length;
+        buildMaxHeap(nums, heapSize);
+
+        for (int i = nums.length -1 ; i > nums.length - k + 1; --i) {
+            Tools.swap(nums, 0, i);
+            --heapSize;
+            maxHeapify(nums, 0, heapSize);
+        }
+        return nums[0];
+    }
+
+
+    /**
+     * 堆就是满足一定特性的数组；  左右子index的标识；  大小值
+     * @param a
+     * @param heapSize
+     */
+    private void buildMaxHeap(int[] a, int heapSize) {
+        for (int i = heapSize/2 ; i >= 0; --i) {
+            maxHeapify(a, i, heapSize);
+        }
+    }
+
+    private void maxHeapify(int[] a, int i, int heapSize) {
+        int l = 2* i + 1;
+        int r = i * 2 + 2;
+        int largest = i;
+
+        if (l < heapSize && a[l] > a[largest]) {
+            largest = l;
+        }
+        if (r < heapSize && a[r] > a[largest]) {
+            largest = r;
+        }
+
+        if (largest != i) {
+            Tools.swap(a, largest, i);
+            maxHeapify(a, largest, heapSize);
+        }
+    }
 }
