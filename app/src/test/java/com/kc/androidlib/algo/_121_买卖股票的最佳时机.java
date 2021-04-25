@@ -18,6 +18,11 @@ public class _121_买卖股票的最佳时机 {
        System.out.println(  getMaxProfit2(a2));
     }
 
+    /**
+     * 暴力
+     * @param a
+     * @return
+     */
     public int getMaxProfit(int[] a) {
 
         int length = a.length;
@@ -35,7 +40,11 @@ public class _121_买卖股票的最佳时机 {
         return maxPrice;
     }
 
-
+    /**
+     * 从左到右，会一直想要右边的最小值
+     * @param a
+     * @return
+     */
     public int getMaxProfit2(int[] a) {
         int minPrice = Integer.MAX_VALUE;
 
