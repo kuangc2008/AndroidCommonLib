@@ -8,11 +8,27 @@ public class _61_旋转链表 {
     public void method1() {
         ListNode node = new ListNode(1).next(new ListNode(2).next(new ListNode(3).next(new ListNode(4))));
 
-        reverse(node);
+        ListNode reverse = reverse(node);
+        reverse.print();
+
     }
 
     public ListNode reverse(ListNode head) {
-        return null;
+        ListNode pre = head;
+        ListNode curr  = head.next;
+        ListNode next = head.next == null? null : head.next.next;
+
+        pre.next = null;
+        while (curr != null) {
+            curr.next = pre;
+            pre = curr;
+            if (next == null) {
+                break;
+            }
+            curr = next;
+            next = next.next;
+        }
+        return curr;
     }
 
 
