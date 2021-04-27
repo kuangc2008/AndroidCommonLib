@@ -6,8 +6,8 @@ public class _70_爬楼梯 {
 
     @Test
     public void method1() {
-        int n = 4;
-        System.out.println(climbStairs2(n));
+        int n = 5;
+        System.out.println(climbStairs(n));
     }
 
     /**
@@ -32,6 +32,24 @@ public class _70_爬楼梯 {
         }
 
         return climbStairs(n-1) + climbStairs(n-2);
+    }
+
+
+    /**
+     * 动态规划
+     *
+     * O(n)
+     */
+    public int climbStairs3(int n) {
+        int[] result = new int[n];
+        result[0] = 1;
+        result[1] = 2;
+
+        for (int i = 2; i <n ; i++) {
+            result[i] = result[i -1 ] + result[i -2];
+        }
+
+        return result[n - 1];
     }
 
     /**
