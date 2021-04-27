@@ -8,11 +8,43 @@ public class _61_旋转链表 {
     public void method1() {
         ListNode node = new ListNode(1).next(new ListNode(2).next(new ListNode(3).next(new ListNode(4))));
 
-        ListNode reverse = reverse(node);
+        ListNode reverse = rotateRight(node, 2);
         reverse.print();
 
     }
 
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+        int len = 1;
+        ListNode node = head;
+        while (node.next != null) {
+            len++;
+            node = node.next;
+        }
+
+        node.next = head;
+        k = k % len;
+
+        for (int i = 0; i < (len - k  - 1); i++) {
+            head = head.next;
+        }
+        ListNode reusult = head.next;
+        head.next = null;
+
+        return reusult;
+
+
+
+
+    }
+
+    /**
+     * 这个是反转链表
+     * @param head
+     * @return
+     */
     public ListNode reverse(ListNode head) {
         ListNode pre = head;
         ListNode curr  = head.next;
