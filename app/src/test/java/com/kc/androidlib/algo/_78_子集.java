@@ -134,6 +134,16 @@ public class _78_子集 {
 
     }
 
+    /**
+
+     * arrary[0]  ---------
+ *     array[1]  ----------
+     *       array[2] ----------
+     *            array[3]
+     *            remove
+     *
+     *
+     */
     private void dfs(List<List<Integer>> result, int[] array, int len, LinkedList<Integer> path, int begin) {
         result.add(new ArrayList<>(path));
         if (len == begin) {
