@@ -14,18 +14,22 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.kc.androidlib.view.ProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TextToBitmapActivity extends AppCompatActivity implements View.OnClickListener{
 
-    static List<String> texts = new ArrayList<>();
-    static List<Integer> widths = new ArrayList<>();
+    public static List<String> texts = new ArrayList<>();
+    public static List<Integer> widths = new ArrayList<>();
 
 
     static {
@@ -163,8 +167,23 @@ public class TextToBitmapActivity extends AppCompatActivity implements View.OnCl
             Log.i("kcc", "static  start 2");
         }
 
+
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.VERTICAL);
+
         imageView.setImageBitmap(c);
-        setContentView(imageView);
+
+        ll.addView(imageView);
+
+        ProgressView progressView = new ProgressView(this);
+
+        progressView.setBackgroundColor(Color.YELLOW);
+        ll.addView(progressView);
+        ViewGroup.LayoutParams layoutParams = progressView.getLayoutParams();
+        layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
+        layoutParams.height = 80;
+
+        setContentView(ll);
 
         Log.i("kcc", "draw  end");
     }
