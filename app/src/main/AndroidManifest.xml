@@ -54,6 +54,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.KProgressActivity" />
+        <activity android:name=".activity.TextToBitmapActivity" />
     </application>
 
 </manifest>
