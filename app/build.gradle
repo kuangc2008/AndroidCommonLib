@@ -48,8 +48,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.13.2'
 
     implementation 'androidx.multidex:multidex:2.0.0'
-    implementation 'com.kc:uiwatcher2:1.0.0'
+//    implementation 'com.kc:uiwatcher2:1.0.0'
 
     // https://github.com/TutorialsAndroid/KAlertDialog
-    implementation 'com.github.TutorialsAndroid:KAlertDialog:v14.0.19'
+//    implementation 'com.github.TutorialsAndroid:KAlertDialog:v14.0.19'
 }
